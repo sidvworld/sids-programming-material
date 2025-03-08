@@ -1,0 +1,17 @@
+Defin structure: struct city with fields name, lat (latitude), and lon (longitude).
+
+Initialize an array city_list of type struct city with data for six cities,
+    {"Paris", 48.85, 2.35},
+    {"Antananarivo", -18.933, 47.517},
+    {"Reno", 39.517, -119.817},
+    {"Los Angeles", 34.050, -118.250},
+    {"Detroit", 42.333, -83.033},
+    {"Windsor (Ontario)", 42.283, -83.000}
+
+display_city: Prints details (name, latitude, longitude) of a city.
+display_city_name: Prints name of a city.
+display_direction_to: Print cardinal relationship of two cities
+
+Main:
+Iterates through city_list to display each city's details using display_city().
+Nested loops to display directional relationships (display_direction_to()) between each pair of cities.

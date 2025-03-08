@@ -1,0 +1,22 @@
+START
+
+// Declare variables
+Declare/Set miles_driven as float
+Declare/Set cost_per_gallon as float
+Declare/Set miles_per_gallon as float
+Declare/Set parking_fees as int
+Declare/Set tolls as int
+
+
+// Calculation 
+Declare/Set cost_per_day = (miles_driven / miles_per_gallon) * cost_per_gallon + parking_fees + tolls)
+
+// Output 
+Display "Miles driven per day: " + miles_driven
+Display "Cost per gallon: " + gallon
+Display "Miles per gallon: " + miles_per_gallon
+Display "Parking fees per day: " + parking_fees
+Display "Tolls per day: " + tolls
+Display "Cost per day: " + cost_per_day
+
+END

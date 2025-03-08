@@ -1,0 +1,47 @@
+Start
+
+Declare float array weights[20]
+Declare integer num_weights = 0
+Declare float sum_weight = 0
+
+print "Weights Calculator"
+
+while num_weights <= 20
+    print "Enter weight in kg (enter 0 to stop): "
+    input float weight
+    
+    if weight < 0
+        print "Enter positive numbers only"
+        continue
+    
+    if weight == 0
+        break
+    
+    weights[num_weights] = weight
+    sum_weight += weight
+    num_weights++
+
+Print "Number of weights: " + num_weights
+
+Declare float average = sum_weight / num_weights
+Print "Average weight: " + format(average, ".3f")
+    
+Declare float min_diff = abs(weights[0] - average)
+Declare integer n_closest = 0
+    
+    for i = 1 to num_weights - 1
+        declare float diff = abs(weights[i] - average)
+        if diff < min_diff
+            min_diff = diff
+    
+    print "Weight(s) closest to average: "
+    for i = 0 to num_weights - 1
+        if abs(weights[i] - average) == min_diff
+            print format(weights[i], ".3f")
+            n_closest++
+    
+    print "Number of values closest to average: " + n_closest
+
+return 0
+
+End

@@ -1,0 +1,27 @@
+Start program
+
+Initialize Boolean finished to 1 (True)
+Initialize float sub_total_price to 0
+Initialize int num_item to 0
+
+While finished is true
+    Prompt user to enter item price or 0 to quit
+    Read user input into item
+
+    If item is greater than 0
+        Add item to sub_total_price
+        Increment num_item by 1
+
+    If item is less than 0
+        Print "Price cannot be negative"
+
+    If item is equal to 0
+        Print the number of items purchased
+        Print the subtotal with 2 decimal places
+        Calculate and print the sales tax (7.5% of subtotal) with 2 decimal places
+        Calculate and print the total (subtotal + sales tax) with 2 decimal places
+        Set finished to false (0)
+
+End program
+
+1021379

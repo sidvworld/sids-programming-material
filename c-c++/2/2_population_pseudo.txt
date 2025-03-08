@@ -1,0 +1,14 @@
+Start program
+
+Initialize integer variable year
+Initialize long integer variable population and set it to 308401808 (initial population in 2011)
+
+Print "U.S. Census Bureau"
+Print "Year    Population"
+
+For year from 2011 to 2020, do
+    Calculate population for year as population + (1021379 * (year - 2011))
+    Print year, population in table
+End for
+
+End program
