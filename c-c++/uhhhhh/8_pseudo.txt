@@ -1,0 +1,26 @@
+START
+    DEFINE STRUCTURE bank_account
+        INTEGER acct_number
+        DOUBLE balance
+        DOUBLE interest
+
+    DEFINE FUNCTION update_account(account)
+        account.balance = account.balance + (account.balance * account.interest)
+
+    MAIN FUNCTION
+        DECLARE ARRAY account_list OF TYPE bank_account WITH SIZE 3
+        INITIALIZE account_list WITH VALUES
+            {10907, 2000.00, 0.015}
+            {47112, 5372.25, 0.024}
+            {87435, 1800.00, 0.030}
+
+        PRINT "Account #\tBalance\n---------\t-------\n"
+
+        FOR i = 0 TO 2 DO
+            CALL update_account WITH account_list[i]
+            PRINT account_list[i].acct_number, "\t\t", account_list[i].balance
+        END FOR
+
+        RETURN 0
+
+END

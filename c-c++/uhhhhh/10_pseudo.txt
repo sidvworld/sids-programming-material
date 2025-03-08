@@ -1,0 +1,47 @@
+Initialize Variables
+
+	Declare choice as integer.
+	Declare factor and dot as double.
+	Declare result, v1, and v2 as vec2d.
+
+Main
+
+    Do:
+	Display Menu: Print "1) Add vectors; 2) Scale vector; 3) Dot product; 4) Exit: ".
+	Read user input into choice.
+	Process User Choice:
+
+	If choice is 1:
+		Print "Enter vector 1 (x, y): ".
+		Read v1.x and v1.y.
+		Print "Enter vector 2 (x, y): ".
+		Read v2.x and v2.y.
+		Call add(v1, v2) and store the result in result.
+		Print "Result: " and call display_vector(result).
+
+	If choice is 2:
+		Print "Enter vector (x, y): ".
+		Read v1.x and v1.y.
+		Print "Enter scaling factor: ".
+		Read factor.
+		Call scale(v1, factor) and store the result in result.
+		Print "Result: " and call display_vector(result).
+
+	If choice is 3:
+		Print "Enter vector 1 (x, y): ".
+		Read v1.x and v1.y.
+		Print "Enter vector 2 (x, y): ".
+		Read v2.x and v2.y.
+		Call dot_product(v1, v2) and store the result in dot.
+		Print "Result: " followed by the value of dot.
+	
+	If choice is 4:
+		Print "Bye!".
+
+	Default:
+		Print "Error!".
+
+	While choice != 4
+
+
+End Program.

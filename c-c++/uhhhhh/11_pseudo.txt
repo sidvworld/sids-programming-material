@@ -1,0 +1,70 @@
+BEGIN
+
+// Define
+    MAX_MONTHS = 12
+    INPUT_FILENAME = "san_jose_temperature_2020.txt"
+
+// Define arrays to store max temps, min temps, and day counts
+    maxTemps[MAX_MONTHS] = {0}
+    minTemps[MAX_MONTHS] = {0}
+    days[MAX_MONTHS] = {0}
+
+// Function to get month name from month number
+    FUNCTION getMonthName(month):
+        monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        RETURN monthNames[month - 1]
+    END FUNCTION
+
+// Function to read data and calculate monthly averages
+    FUNCTION calculateMonthlyAverages(inputFile, maxTemps, minTemps, days):
+        WHILE (read a line from inputFile into year, month, day, maxTemp, minTemp):
+            maxTemps[month - 1] += maxTemp
+            minTemps[month - 1] += minTemp
+            days[month - 1] += 1
+        END WHILE
+
+        FOR i = 0 TO MAX_MONTHS - 1:
+            IF days[i] > 0:
+                maxTemps[i] = maxTemps[i] / days[i]
+                minTemps[i] = minTemps[i] / days[i]
+            END IF
+        END FOR
+    END FUNCTION
+
+// Main program
+
+    inputFile = OPEN INPUT_FILENAME FOR READING
+    IF inputFile IS NULL:
+        PRINT "Unable to open input file " + INPUT_FILENAME
+        RETURN 1
+    END IF
+
+// Prompt for output file name until a valid one is given
+    WHILE TRUE:
+        PRINT "Enter output file name: "
+        READ outputFileName
+
+        outputFile = OPEN outputFileName FOR WRITING
+        IF outputFile IS NULL:
+            PRINT "Unable to open output file " + outputFileName
+        ELSE:
+            BREAK
+        END IF
+    END WHILE
+
+// Calculate monthly averages
+    CALL calculateMonthlyAverages(inputFile, maxTemps, minTemps, days)
+
+// Write results to output file
+    WRITE "Mon./Year Avg Max  Avg Min (°C)" TO outputFile
+    FOR i = 0 TO MAX_MONTHS - 1:
+        WRITE getMonthName(i + 1) + " 2020   " + FORMAT(maxTemps[i], "6.2f") + "   " + FORMAT(minTemps[i], "6.2f") TO outputFile
+    END FOR
+
+// Close files
+    CLOSE inputFile
+    CLOSE outputFile
+
+    RETURN 0
+
+END

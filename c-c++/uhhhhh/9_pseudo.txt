@@ -1,0 +1,91 @@
+// Define constants for day abbreviations and conflict messages based on language
+#if LANG == 0
+    MON := "M"
+    TUE := "T"
+    WED := "W"
+    THU := "Th"
+    FRI := "F"
+    SAT := "Sa"
+    SUN := "Su"
+    CONFLICT_MSG := "conflicts with"
+#else
+    MON := "Mo"
+    TUE := "Di"
+    WED := "Mi"
+    THU := "Do"
+    FRI := "Fr"
+    SAT := "Sa"
+    SUN := "So"
+    CONFLICT_MSG := "steht in Konflikt mit"
+#endif
+
+// Define bitmask constants for each day of the week
+MONDAY    := (1 << 0) // 1
+TUESDAY   := (1 << 1) // 2
+WEDNESDAY := (1 << 2) // 4
+THURSDAY  := (1 << 3) // 8
+FRIDAY    := (1 << 4) // 16
+SATURDAY  := (1 << 5) // 32
+SUNDAY    := (1 << 6) // 64
+
+// Define structure to hold class schedule information
+struct schedule_format {
+    name[20]: string
+    days: integer
+    start_h: integer
+    start_m: integer
+    end_h: integer
+    end_m: integer
+}
+
+// Initialize array of class sections with sample data
+classes := [
+    {"ECON 101", MONDAY | WEDNESDAY, 9, 15, 11, 35},
+    {"PHYS 002", TUESDAY | THURSDAY, 10, 25, 13, 0},
+    {"COMSC 079C", MONDAY, 7, 45, 9, 30},
+    {"ACCTG 0063A", WEDNESDAY | FRIDAY, 10, 15, 12, 35},
+    {"CHEM 001", TUESDAY | THURSDAY, 17, 0, 19, 25},
+    {"MATH 017", MONDAY | TUESDAY | WEDNESDAY | THURSDAY, 13, 5, 15, 45},
+    {"ART 099", TUESDAY | THURSDAY, 12, 5, 16, 35}
+]
+
+// Function to check for time conflict between two class sections
+function has_conflict(sect_a: schedule_format, sect_b: schedule_format) -> boolean {
+    if (sect_a.days & sect_b.days != 0) { // Check if there are common meeting days
+        if ((sect_a.start_h < sect_b.end_h) or 
+            (sect_a.start_h == sect_b.end_h and sect_a.start_m < sect_b.end_m)) {
+            if ((sect_b.start_h < sect_a.end_h) or 
+                (sect_b.start_h == sect_a.end_h and sect_b.start_m < sect_a.end_m)) {
+                return true // Conflict detected
+            }
+        }
+    }
+    return false // No conflict
+}
+
+// Function to display details of a class section
+function display(sect: schedule_format) {
+    print(sect.name + " ")
+    if (sect.days & MONDAY) print(MON)
+    if (sect.days & TUESDAY) print(TUE)
+    if (sect.days & WEDNESDAY) print(WED)
+    if (sect.days & THURSDAY) print(THU)
+    if (sect.days & FRIDAY) print(FRI)
+    if (sect.days & SATURDAY) print(SAT)
+    if (sect.days & SUNDAY) print(SUN)
+    print(" (" + sect.start_h + ":" + sect.start_m + "-" + sect.end_h + ":" + sect.end_m + ")")
+}
+
+// Main program
+function main() {
+    for i from 0 to 6 {
+        for j from i + 1 to 6 {
+            if (has_conflict(classes[i], classes[j])) {
+                display(classes[i])
+                print(" " + CONFLICT_MSG + " ")
+                display(classes[j])
+                print("\n")
+            }
+        }
+    }
+}

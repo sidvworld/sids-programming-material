@@ -1,0 +1,70 @@
+BEGIN
+
+    // Define the RegularPolygon class
+    Class RegularPolygon
+        Private
+            Integer nSides
+            Double sideLength
+
+        Public
+            // Default constructor
+            Constructor RegularPolygon()
+                nSides = 3
+                sideLength = 1.0
+
+            // Parameterized constructor
+            Constructor RegularPolygon(Double x, Double y)
+                nSides = x
+                sideLength = y
+
+            // Getter for nSides
+            Method getNSides() Returns Integer
+                Return nSides
+
+            // Getter for sideLength
+            Method getSideLength() Returns Double
+                Return sideLength
+
+            // Setter for nSides
+            Method setNSides(Integer sides)
+                nSides = Max(3, sides)
+
+            // Setter for sideLength
+            Method setSideLength(Double length)
+                sideLength = Absolute(length)
+
+            // Display method
+            Method display()
+                Print "Sides: ", nSides, " | Side Length: ", sideLength
+
+            // Method to calculate perimeter
+            Method getPerimeter() Returns Double
+                Return nSides * sideLength
+
+            // Method to calculate area
+            Method getArea() Returns Double
+                Double tangentVal = Tan(3.14159 / nSides)
+                Return (nSides * (sideLength * sideLength)) / (4 * tangentVal)
+
+    // Main function
+    Function Main()
+        // Create RegularPolygon objects
+        RegularPolygon polygon1
+        RegularPolygon polygon2(6, 4.0)
+        RegularPolygon polygon3(4, 7.5)
+
+        // Display properties, perimeter, and area of polygon1
+        polygon1.display()
+        Print " | Perimeter: ", polygon1.getPerimeter(), " | Area: ", polygon1.getArea()
+        
+        // Display properties, perimeter, and area of polygon2
+        polygon2.display()
+        Print " | Perimeter: ", polygon2.getPerimeter(), " | Area: ", polygon2.getArea()
+
+        // Display properties, perimeter, and area of polygon3
+        polygon3.display()
+        Print " | Perimeter: ", polygon3.getPerimeter(), " | Area: ", polygon3.getArea()
+
+    End Function
+
+END

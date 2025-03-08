@@ -1,0 +1,35 @@
+Define a structure 'student' with:
+    - long int id
+    - int year_in_college
+    - array of 4 double test_scores
+
+Initialize an array 'student_list' of 5 'student' structures with given values.
+
+Define constants:
+    n_students = 5
+    n_tests = 4
+
+Define function 'show_student_average' with parameter 's' (of type 'student'):
+    Initialize 'student_average' to 0
+    For each test score in 's.test_scores':
+        Add the score to 'student_average'
+    Divide 'student_average' by 'n_tests' to get the average
+    Print 's.id' and 'student_average'
+
+Define function 'show_test_average' with parameter 's' (array of 'student'):
+    Initialize an array 'tests' of size 4 to 0
+    For each student in 's':
+        For each test score in the student:
+            Add the score to the corresponding 'tests' element
+    For each test in 'tests':
+        Calculate the average by dividing by 'n_students'
+        Print the test number and the average
+
+Define function 'main':
+    Print header "ID  Average Test Score"
+    For each student in 'student_list':
+        Call 'show_student_average' with the student
+    Print a newline
+    Print header "Test Average Score"
+    Call 'show_test_average' with 'student_list'
+    Return 0

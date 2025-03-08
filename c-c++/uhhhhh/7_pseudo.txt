@@ -1,0 +1,32 @@
+Define max_lines as 1000
+Define max_char as 2000
+
+Declare text as a 2D character array with dimensions max_lines and max_char
+Declare lines as an integer, initialized to 0
+Declare frequency as an integer array of size 26, initialized to zeros
+
+Declare loop as a boolean, initialized to true
+
+Output "Input lines of text. Press ENTER on blank line when finished."
+
+Do:
+    Read a line of text into text[lines] using fgets
+    If text[lines][0] is '\n' or '\r':
+        Set loop to false
+        // Count frequencies of each letter in the input lines
+        For each line from 0 to lines-1:
+            For each character in text[line]:
+                Set character to the uppercase of text[line][character] using toupper
+                If character is alphabetic (isalpha(character)):
+                    Subtract 'A' from character to get index in frequency array
+                    Increment frequency[character]
+    Else:
+        Increment lines
+
+While loop is true
+
+// Output the frequencies of each letter
+For each letter index from 0 to 25:
+    Output the letter corresponding to 'A' + index and its frequency in frequency[index]
+
+End program
