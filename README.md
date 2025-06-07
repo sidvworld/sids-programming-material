@@ -1,5 +1,4 @@
-## Some of the best implementations of common programs
-# C, C++, and Java
+# Some of the best implementations of common programs in C, C++ and Java
 
 Hello! If you are struggling to break through into core programming languages like C, C++, or Java, check out this repo.
 
